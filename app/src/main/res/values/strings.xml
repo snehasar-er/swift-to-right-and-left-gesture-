@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="apple">Apple</string>
+    <string name="banana">Banana</string>
+    <string name="dragon">Dragon</string>
+    <string name="grapes">Grapes</string>
+    <string name="guava">Guava</string>
+    <string name="kiwi">KIWI</string>
+    <string name="oranges">Oranges</string>
+    <string name="papaya">Papaya</string>
+    <string name="pineapple">PineApple</string>
+    <string name="strawberry">Strawberry</string>
+    <string name="mango">Mango</string>
 </resources>
