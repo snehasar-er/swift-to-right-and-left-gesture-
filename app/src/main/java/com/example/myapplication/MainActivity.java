@@ -29,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -39,118 +40,39 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-	ImageView imageView;
-	Button camera, setWall;
-	Bitmap bitmap;
-	private static final int PERMISSION_REQUEST_CODE = 100;
-	private static final int CAMERA_REQUEST_CODE = 1;
+public class MainActivity extends AppCompatActivity  {
+	ImageView image1,image2,image3,image4;
+	String url, url1, url2, url3;
+	Glide glide, glide1, glide2, glide3;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getSupportActionBar().hide();
-		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
 		setContentView(R.layout.activity_main);
-		imageView = findViewById(R.id.imageView);
-		camera = findViewById(R.id.buttonCamera);
-		setWall = findViewById(R.id.buttonSetWallpaper);
+		image1 = findViewById(R.id.image);
+		image2 = findViewById(R.id.image1);
+		image3 = findViewById(R.id.image2);
+		image4 = findViewById(R.id.image3);
 
-		camera.setOnClickListener(this);
-		setWall.setOnClickListener(this);
+		url = "https://firebasestorage.googleapis.com/v0/b/fir-574b6.appspot.com/o/kiwi.jpg?alt=media&token=cdd8301f-437b-4ce3-b8ac-b05178a65cbd";
+		glide.with(getApplicationContext()).load(url).into(image1);
 
+		url1 = "https://firebasestorage.googleapis.com/v0/b/fir-574b6.appspot.com/o/apples.jpg?alt=media&token=cca83591-1c37-48e3-9be1-13af0e1aec94";
+		glide1.with(getApplicationContext()).load(url1).into(image2);
 
-	}
+		url2 = "https://firebasestorage.googleapis.com/v0/b/fir-574b6.appspot.com/o/banana.jpg?alt=media&token=33e90898-273b-4b4e-8cb8-283ca3cc8b43";
+		glide2.with(getApplicationContext()).load(url2).into(image3);
 
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-			case R.id.buttonCamera:
-				if(checkPermission()) {
-					openCameraMethod();
-				}
-				else
-				{
-					requestPermission();
-				}
-				break ;
-
-			case R.id.buttonSetWallpaper:
-				try {
-					getApplicationContext().setWallpaper(bitmap);
-					Toast.makeText(getApplicationContext(), "Wallpaper Set", Toast.LENGTH_LONG).show();
-					finish();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				break;
-		}
-		
-	}
-
-	private void requestPermission() {
-		ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA},
-				PERMISSION_REQUEST_CODE);
-	}
-	private boolean checkPermission() {
-		if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-				!= PackageManager.PERMISSION_GRANTED) {
-			// Permission is not granted
-			return false;
-		}
-		return true;
-	}
-	private void openCameraMethod()
-	{
-		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		startActivityForResult(intent, CAMERA_REQUEST_CODE);
-	}
-	@Override
-	public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-		switch (requestCode) {
-			case PERMISSION_REQUEST_CODE:
-				if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-				Toast.makeText(getApplicationContext(), "Camera Permission Granted", Toast.LENGTH_SHORT).show();
-				openCameraMethod();
-				// main logic
-				}else {
-				Toast.makeText(getApplicationContext(), "Camera Permission Denied", Toast.LENGTH_SHORT).show();
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-					if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-						showMessageOKCancel("You need to allow access permissions for Camera",
-								new DialogInterface.OnClickListener() {
-									@Override
-									public void onClick(DialogInterface dialog, int which) {
-										if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-											requestPermission();
-										}
-									}
-								});
-					}
-				}
-			}
-			break;
+		url3 = "https://firebasestorage.googleapis.com/v0/b/fir-574b6.appspot.com/o/dragon.jpg?alt=media&token=eed581fc-f343-4b49-bd03-44f13acda4b4";
+		glide3.with(getApplicationContext()).load(url3).into(image4);
 
 	}
 
-}
 
-	private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
-		new AlertDialog.Builder(MainActivity.this)
-				.setMessage(message)
-				.setPositiveButton("OK", okListener)
-				.setNegativeButton("Cancel", null)
-				.create()
-				.show();
-	}
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		if (resultCode == RESULT_OK) {
-			Bundle b = data.getExtras();
-			bitmap = (Bitmap) b.get("data");
-			imageView.setImageBitmap(bitmap);
-		}
-	}
+
+
+
+
 }
