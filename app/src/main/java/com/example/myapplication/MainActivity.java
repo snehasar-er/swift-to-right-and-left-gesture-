@@ -1,51 +1,69 @@
 package com.example.myapplication;
 
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Calendar;
 
 
-
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-
-
-	String[] users = { "Suresh Dasari", "Trishika Dasari", "Rohini Alavala", "Praveen Kumar", "Madhav Sai" };
+public class MainActivity extends AppCompatActivity {
+	DatePickerDialog picker;
+	EditText eText;
+	Button btnGet;
+	TextView tvw;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Spinner spin = (Spinner) findViewById(R.id.spinner1);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, users);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spin.setAdapter(adapter);
-		spin.setOnItemSelectedListener(this);
-	}
-
-	@Override
-	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-		Toast.makeText(getApplicationContext(), "Selected User: "+users[position] ,Toast.LENGTH_SHORT).show();
-	}
-
-	@Override
-	public void onNothingSelected(AdapterView<?> parent) {
-
+		tvw=(TextView)findViewById(R.id.textView1);
+		eText=(EditText) findViewById(R.id.editText1);
+		eText.setInputType(InputType.TYPE_NULL);
+		eText.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				final Calendar cldr = Calendar.getInstance();
+				int day = cldr.get(Calendar.DAY_OF_MONTH);
+				int month = cldr.get(Calendar.MONTH);
+				int year = cldr.get(Calendar.YEAR);
+				// date picker dialog
+				picker = new DatePickerDialog(MainActivity.this,
+						new DatePickerDialog.OnDateSetListener() {
+							@Override
+							public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+								eText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+							}
+						}, year, month, day);
+				picker.show();
+			}
+		});
+		btnGet=(Button)findViewById(R.id.button1);
+		btnGet.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				tvw.setText("Selected Date: "+ eText.getText());
+			}
+		});
 	}
 }
 

@@ -1,32 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
-    <Switch
-        android:id="@+id/switch1"
+    <EditText
+        android:id="@+id/editText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:switchMinWidth="56dp"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="120dp"
-        android:text="Switch1:"
-        android:checked="true"
-        android:textOff="OFF"
-        android:textOn="ON"/>
-    <Switch
-        android:id="@+id/switch2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:switchMinWidth="56dp"
-        android:layout_below="@+id/switch1"
-        android:layout_alignLeft="@+id/switch1"
-        android:text="Switch2:"
-        android:textOff="OFF"
-        android:textOn ="ON"/>
+        android:layout_marginTop="150dp"
+        android:ems="10"
+        android:hint="Enter Date" />
     <Button
-        android:id="@+id/getBtn"
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="200dp"
-        android:text="Get" />
+        android:layout_below="@+id/editText1"
+        android:layout_marginLeft="100dp"
+        android:text="Get Date" />
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button1"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textSize="18dp"/>
 </RelativeLayout>
