@@ -8,30 +8,20 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/insert_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Name" />
 
-    <EditText
-        android:id="@+id/insert_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email" />
-
-    <EditText
-        android:id="@+id/insert_contact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Contact" />
-
+        <Button
+            android:id="@+id/getBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="200dp"
+            android:text="Show Alert" />
     <Button
-        android:id="@+id/btn_insert"
+        android:id="@+id/getBtnchoice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="30dp"
-        android:text="Insert" />
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="200dp"
+        android:text="Show Alert" />
 
 </LinearLayout>
