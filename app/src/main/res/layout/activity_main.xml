@@ -1,59 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
-    <TextView
+    <Switch
+        android:id="@+id/switch1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:switchMinWidth="56dp"
         android:layout_marginLeft="100dp"
-        android:textSize="18dp"
-        android:text="Select Your Course"
-        android:textStyle="bold"
-        android:id="@+id/txtView"/>
-    <RadioGroup
-        android:layout_width="match_parent"
+        android:layout_marginTop="120dp"
+        android:text="Switch1:"
+        android:checked="true"
+        android:textOff="OFF"
+        android:textOn="ON"/>
+    <Switch
+        android:id="@+id/switch2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/rdGroup"
-        android:layout_below="@+id/txtView">
-        <RadioButton
-            android:id="@+id/rdbJava"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginLeft="100dp"
-            android:text="Java"
-            android:onClick="onRadioButtonClicked"/>
-        <RadioButton
-            android:id="@+id/rdbPython"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginLeft="100dp"
-            android:text="Python"
-            android:onClick="onRadioButtonClicked"/>
-        <RadioButton
-            android:id="@+id/rdbAndroid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginLeft="100dp"
-            android:text="Android"
-            android:onClick="onRadioButtonClicked"/>
-        <RadioButton
-            android:id="@+id/rdbAngular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginLeft="100dp"
-            android:text="AngularJS"
-            android:onClick="onRadioButtonClicked"/>
-    </RadioGroup>
+        android:switchMinWidth="56dp"
+        android:layout_below="@+id/switch1"
+        android:layout_alignLeft="@+id/switch1"
+        android:text="Switch2:"
+        android:textOff="OFF"
+        android:textOn ="ON"/>
     <Button
         android:id="@+id/getBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_below="@+id/rdGroup"
-        android:text="Get Course" />
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="200dp"
+        android:text="Get" />
 </RelativeLayout>
