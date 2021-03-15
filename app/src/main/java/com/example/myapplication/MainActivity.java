@@ -1,8 +1,10 @@
 package com.example.myapplication;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
@@ -31,21 +33,24 @@ import java.util.Calendar;
 
 
 public class MainActivity extends AppCompatActivity {
-	private TextClock tClock;
-	private TextView tView;
-	private Button btn;
-	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		tClock = (TextClock) findViewById(R.id.textClock1);
-		tView = (TextView) findViewById(R.id.textview1);
-		btn = (Button)findViewById(R.id.btnGet);
-		btn.setOnClickListener(new View.OnClickListener() {
+		Button btntOn = (Button)findViewById(R.id.btnOn);
+		Button btntOff = (Button)findViewById(R.id.btnOFF);
+		btntOn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				tView.setText("Time: "+tClock.getText());
+				WifiManager wmgr = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+				wmgr.setWifiEnabled(true);
+			}
+		});
+		btntOff.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				WifiManager wmgr = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+				wmgr.setWifiEnabled(false);
 			}
 		});
 	}
