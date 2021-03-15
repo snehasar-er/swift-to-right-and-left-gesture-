@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,52 +22,45 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
 
-	CheckBox android, java, angular, python;
+	RadioButton android, java, angular, python;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		android = (CheckBox)findViewById(R.id.chkAndroid);
-		angular = (CheckBox)findViewById(R.id.chkAngular);
-		java = (CheckBox)findViewById(R.id.chkJava);
-		python = (CheckBox)findViewById(R.id.chkPython);
+		android = (RadioButton)findViewById(R.id.rdbAndroid);
+		angular = (RadioButton)findViewById(R.id.rdbAngular);
+		java = (RadioButton)findViewById(R.id.rdbJava);
+		python = (RadioButton)findViewById(R.id.rdbPython);
 		Button btn = (Button)findViewById(R.id.getBtn);
 		btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				String result = "Selected Courses";
-				if(android.isChecked()){
-					result += "\nAndroid";
-				}
-				if(angular.isChecked()){
-					result += "\nAngularJS";
-				}
-				if(java.isChecked()){
-					result += "\nJava";
-				}
-				if(python.isChecked()){
-					result += "\nPython";
-				}
+				String result = "Selected Course: ";
+				result+= (android.isChecked())?"Android":(angular.isChecked())?"AngularJS":(java.isChecked())?"Java":(python.isChecked())?"Python":"";
 				Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
-	public void onCheckboxClicked(View view) {
-		boolean checked = ((CheckBox) view).isChecked();
+	public void onRadioButtonClicked(View view) {
+		boolean checked = ((RadioButton) view).isChecked();
 		String str="";
-		// Check which checkbox was clicked
+		// Check which radio button was clicked
 		switch(view.getId()) {
-			case R.id.chkAndroid:
-				str = checked?"Android Selected":"Android Deselected";
+			case R.id.rdbAndroid:
+				if(checked)
+					str = "Android Selected";
 				break;
-			case R.id.chkAngular:
-				str = checked?"AngularJS Selected":"AngularJS Deselected";
+			case R.id.rdbAngular:
+				if(checked)
+					str = "AngularJS Selected";
 				break;
-			case R.id.chkJava:
-				str = checked?"Java Selected":"Java Deselected";
+			case R.id.rdbJava:
+				if(checked)
+					str = "Java Selected";
 				break;
-			case R.id.chkPython:
-				str = checked?"Python Selected":"Python Deselected";
+			case R.id.rdbPython:
+				if(checked)
+					str = "Python Selected";
 				break;
 		}
 		Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
