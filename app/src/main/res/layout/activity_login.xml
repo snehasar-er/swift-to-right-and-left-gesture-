@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    android:orientation="vertical" >
-    <EditText
-        android:id="@+id/txtTo"
-        android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:id="@+id/l_layout">
+    <TextView
+        android:id="@+id/fstTxt"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="To"/>
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="150dp"
+        android:text="First Number"/>
     <EditText
-        android:id="@+id/txtSub"
-        android:layout_width="match_parent"
+        android:id="@+id/firstNum"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Subject"/>
+        android:layout_marginLeft="100dp"
+        android:ems="10"/>
+    <TextView
+        android:id="@+id/secTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Second Number"
+        android:layout_marginLeft="100dp" />
     <EditText
-        android:id="@+id/txtMsg"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="top"
-        android:hint="Message"/>
-    <Button
-        android:layout_width="100dp"
+        android:id="@+id/secondNum"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="Send"
-        android:id="@+id/btnSend"/>
+        android:layout_marginLeft="100dp"
+        android:ems="10" />
+    <ImageButton
+        android:id="@+id/addBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:src="@drawable/common_full_open_on_phone" />
 </LinearLayout>
