@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,74 +12,37 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 
 public class MainActivity extends AppCompatActivity {
-	EditText name, email, contact;
-	Button insert;
-	DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("user");;
+
+
+		private EditText eTo;
+		private EditText eSubject;
+		private EditText eMsg;
+		private Button btn;
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
-
 			setContentView(R.layout.activity_main);
-			name = findViewById(R.id.insert_name);
-			email = findViewById(R.id.insert_email);
-			contact = findViewById(R.id.insert_contact);
-			insert = findViewById(R.id.btn_insert);
+			eTo = (EditText)findViewById(R.id.txtTo);
+			eSubject = (EditText)findViewById(R.id.txtSub);
+			eMsg = (EditText)findViewById(R.id.txtMsg);
+			btn = (Button)findViewById(R.id.btnSend);
+		btn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent it = new Intent(Intent.ACTION_SEND);
+				it.putExtra(Intent.EXTRA_EMAIL, new String[]{eTo.getText().toString()});
+				it.putExtra(Intent.EXTRA_SUBJECT,eSubject.getText().toString());
+				it.putExtra(Intent.EXTRA_TEXT,eMsg.getText());
+				it.setType("message/rfc822");
+				startActivity(Intent.createChooser(it,"Choose Mail App"));
+			}
 
-			insert.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View view) {
-					String NAME = name.getText().toString().trim();
-					String EMAIL = email.getText().toString().trim();
-					String CONTACT = contact.getText().toString().trim();
-
-					if (NAME.isEmpty()) {
-						name.setError("Name is required");
-						name.requestFocus();
-						return;
-					}
-
-					if (EMAIL.isEmpty()) {
-						email.setError("Email is required");
-						email.requestFocus();
-						return;
-					}
-
-					if (CONTACT.isEmpty()) {
-						contact.setError("Contact is required");
-						contact.requestFocus();
-						return;
-					}
-					String ID = databaseReference.push().getKey();
-					Model model = new Model(ID, NAME, EMAIL, CONTACT);
-
-					databaseReference.child(ID).setValue(model).addOnCompleteListener(new OnCompleteListener<Void>() {
-						@Override
-						public void onComplete(@NonNull Task<Void> task) {
-							if (task.isSuccessful()) {
-								Toast.makeText(getApplicationContext(), "User Added", Toast.LENGTH_LONG).show();
-							}
-						}
-					}).addOnFailureListener(new OnFailureListener() {
-						@Override
-						public void onFailure(@NonNull Exception e) {
-							Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-						}
-					});
-				}
-
-
-			});
-
+		});
 
 		}
-
 	}
+
 
