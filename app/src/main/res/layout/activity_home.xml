@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:padding="16dp"
+    tools:context=".HomeActivity">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
-        android:text="Gesture Example"
+        android:text="This is home activity"
         android:textSize="22sp"
         android:textStyle="bold" />
 
@@ -21,17 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="This is Main Activity"
-        android:textSize="22sp"
-        android:textStyle="bold" />
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:text="Swipe right to open Home Activity"
+        android:text="Swipe Left to open Main Activity"
         android:textColor="#f00"
         android:textSize="22sp"
         android:textStyle="bold" />
